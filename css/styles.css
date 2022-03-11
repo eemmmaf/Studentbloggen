@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato&family=Questrial&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+}
+
+img{
+   max-width:100%;
+   margin-top:1rem;
+}
+
+.hero-image{
+    position: relative;
+    top:4rem;
+}
+
+.hero-text {
+    text-align: center;
+        position: absolute;
+        top: 27%;
+        left: 52%;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.616);
+        padding:2%;
+ }
+
+
+main{
+    max-width:1220px;
+    width:100%;
+    background-color: white;
+    display: block;
+margin: 4rem auto;
+padding:2%;
+min-height:100vh;
+}
+
+html{
+    font-size: 62.5%;
+    background-color: rgb(245, 243, 243);
+}
+
+h1{
+    font-size:3rem;
+    margin:1rem;
+    font-family: 'DM Serif Display', serif;
+}
+
+h2{
+    font-family: 'DM Serif Display', serif;
+    font-size:2.8rem;
+}
+
+h3{
+    font-family: 'DM Serif Display', serif;
+    font-size:2.4rem; 
+}
+
+h4{
+    font-family: 'DM Serif Display', serif;
+}
+
+a{
+    font-family: 'Lato', sans-serif;
+}
+
+li{
+    font-family: 'Lato', sans-serif;
+}
+
+a:hover{
+    font-weight: bold;
+}
+
+header a{
+    color:black;
+    text-decoration: none;
+}
+ul{
+    list-style-type: none;
+}
+.desktop-nav a{
+    font-size: 1.8rem;
+}
+
+p{
+    font-size:1.8rem;
+    font-family: 'Lato', sans-serif;
+}
+
+header{
+    background-color: rgb(255, 255, 255);
+    position:fixed;
+    top: 0;
+    width:100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    z-index:1;
+}
+
+.desktop-nav li{
+    display: inline-block;
+    margin-right:3rem;
+}
+
+.desktop-nav ul{
+    position: absolute;
+    right:1rem;
+    top:1rem;
+}
+
+/*Startsidan*/
+
+.details{
+    float:right;
+    color:black;
+    font-size: 1.6rem;
+}
+
+.posted{
+text-align: center;
+color:rgb(34, 34, 34);
+font-size: 1.6rem;
+border-bottom: 1px solid rgb(0, 0, 99);
+margin-top:0;
+}
+
+
+.index-member{
+    background-color: rgb(43, 43, 43);
+    padding:10rem;
+    margin-top:0;
+    width:100%;
+    margin-top:5rem;
+}
+.index-member h2{
+    color:white;
+    font-size:3.7rem;
+}
+.index-member a{
+    font-size:2.3rem;
+    color:white;
+    text-decoration: none;
+}
+
+.index-register{
+    text-align: center;
+}
+
+.latest{
+    max-width:700px;
+    width:100%;
+    border:1px solid rgb(231, 229, 229);
+    margin-bottom:2rem;
+    padding-top:0;
+    padding-bottom:4%;
+    padding-left:2%;
+    padding-right:2%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.latest h3{
+    text-align: center;
+    font-size: 2.6rem;
+    color:rgb(1, 1, 63);
+}
+
+#users{
+    padding-left:0;
+}
+
+.index-users{
+    background-color: 
+    #ededed;
+    padding:1%;
+    max-width:300px;
+    width:100%;
+    position: absolute;
+    top: 45rem;
+  right: 20rem;
+  height:auto;
+}
+
+#getstarted-ul{
+    list-style-type: circle;
+    text-align: left;
+    margin-bottom:2rem;
+}
+
+#getstarted-ul li{
+    font-size:1.6rem;
+}
+
+#register-a{
+    color:black;
+    font-size:1.6rem;
+    text-decoration: none;
+    padding:1rem;
+    background-color: 
+    #c0dfd7;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.index-users li{
+    border-bottom:1px solid rgb(61, 60, 60);
+    font-size:1.6rem;
+    margin-top:2rem;
+}
+
+/*Logga in-sidan*/
+
+label {
+font-size:1.8rem;
+font-family: 'Questrial', sans-serif;
+}
+#login-form{
+    max-width:450px;
+    width:100%;
+    padding:2%;
+    display: block;
+    margin:12rem auto auto auto;
+    background-color: rgb(255, 255, 255);
+    border:2px solid rgb(163, 161, 159);
+}
+
+input[type=text], input[type=password], input[type=email] {
+    max-width:400px;
+    width:100%;
+    padding:0.5rem;
+    margin-top:0.5rem;
+}
+
+input[type=submit]{
+    max-width:170px;
+    width:100%;
+    background-color: rgb(15, 0, 56);
+    color:white;
+    border:none;
+    padding:2%;
+    font-size: 1.6rem;
+    font-family: 'Lato', sans-serif;
+    margin:1rem auto;
+    display: block;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+input[type=submit]:hover{
+    background-color: rgb(36, 1, 134);
+}
+
+
+form h2{
+    text-align: center;
+    border-bottom:1px solid gray;
+    padding-bottom:1.5rem;
+    margin-top:0;
+}
+
+#member{
+    background-color: rgb(200, 204, 255);
+    color:black;
+    text-decoration: none;
+    padding:0.5rem;
+    font-size:1.6rem;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border:2px solid rgb(95, 95, 95);
+}
+
+.form-flex{
+    display: flex;
+    align-items: baseline;
+    margin-top:2rem;
+}
+
+.form-flex div{
+    margin-left:2rem;
+}
+
+form h3{
+    font-size:2rem;
+}
+
+/*Footer*/
+footer{
+    background-color: #1C1C1BFF;
+    color:white;
+    padding:2rem;
+    width:100%;
+    margin-top:20rem;
+}
+
+footer a{
+    color:white;
+    text-decoration: none;
+    font-size:1.6rem;
+}
+
+footer li{
+    margin-bottom:1rem;
+}
+
+footer ul{
+    padding-left:0;
+}
+
+.footer-flex{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer{
+    background-color: rgb(19, 19, 18);
+    text-align: center;
+    margin:0;
+    padding:1rem;
+}
+
+.footer p{
+    margin:0;
+    font-size:1.4rem;
+}
+
+/*Sidan för registrering*/
+#register{
+    display: block;
+    margin:auto;
+    max-width:600px;
+    padding:2%;
+    width:100%;
+    margin:8rem auto auto auto;
+    border:2px solid rgb(163, 161, 159);
+    background-color: white;
+}
+
+#register input[type=text],input[type=password],input[type=email] {
+    width:100%;
+    max-width:500px;
+}
+
+#register p{
+    margin-bottom:3rem;
+    text-align: center;
+}
+
+.error-message{
+    color:rgb(61, 0, 0);
+    text-align: center;
+    padding:2%;
+    border:0.5px solid red;
+    background-color: rgb(252, 224, 224);
+}
+
+.error-form{
+    font-size: 1.6rem;
+    font-family: 'Questrial', sans-serif;
+    display: block;
+    margin-bottom:2rem;
+    font-weight: bold;
+    color:rgb(61, 0, 0);
+}
+
+/*Admin-sidan*/
+.admin h2{
+    text-align: center;
+}
+.admin-flex{
+    display:flex;
+}
+
+#admin-ul{
+    padding-left:0;
+    padding:3%;
+}
+
+#admin-ul li{
+    font-size:1.6rem;
+    margin-top:2rem;
+    background-color: white;
+    border:5px solid rgb(216, 214, 214);
+    padding:1%;
+}
+
+#left{
+    border:1px solid black;
+    width:100%;
+    max-width:450px;
+    background-color: rgb(246, 246, 250);
+}
+
+article h4{
+    font-family: 'Questrial', sans-serif;
+    font-size:2.4rem;  
+}
+
+#right{
+    max-width: 700px;
+    width:100%;
+    overflow-y: auto;
+    margin-left:2rem;
+}
