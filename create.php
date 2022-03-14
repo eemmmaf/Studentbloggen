@@ -1,11 +1,11 @@
 <?php
 include('includes/config.php');
 //Kontroll för att se om användaren är inloggad. Olika navigeringar visas beroende på om användare är inloggad eller ej
-if(isset($_SESSION['email'])){
+if (isset($_SESSION['email'])) {
     include('includes/header-user.php');
-    }else{
-        include('includes/header-public.php');
-    }
+} else {
+    include('includes/header-public.php');
+}
 
 
 //Tar användaren till logga in-sidan om inloggningen misslyckades
@@ -36,9 +36,9 @@ $content = "";
 //Kontroll för att se om formuläret är skickat
 if (isset($_POST['title'])) {
     $title = $_POST['title'];
-    $title = htmlentities($title, ENT_QUOTES, 'UTF-8');
+    $title = strip_tags($title);
     $content = $_POST['content'];
-    $content = htmlentities($title, ENT_QUOTES, 'UTF-8');
+    $content = strip_tags($content);
     //Felmeddelanden
     $success = true; //Variabel för när det postade är OK
     if (!$post->setTitle($title)) {
@@ -55,15 +55,15 @@ if (isset($_POST['title'])) {
 
     if ($success) {
         if ($post->addPost($title, $content, $email)) {
-            echo "<p id='lagrat-admin'> Inlägget har lagrats </p>";
+            $message = "<p id='lagrat-admin'> Inlägget har lagrats <i class='fa-solid fa-circle-check'></i> </p>";
             //Nollställer default variablerna om inlägget postas
             $title = "";
             $content = "";
         } else {
-            echo "<p> Fel vid lagring </p>";
+            $message =  "<p> Fel vid lagring </p>";
         }
     } else {
-        echo "<p class='not-stored'>Blogginlägg ej lagrat. Kontrollera innehållet och försök igen</p>";
+        $message =  "<p class='not-stored'>Blogginlägg ej lagrat. Kontrollera innehållet och försök igen</p>";
     }
 }
 
@@ -76,56 +76,60 @@ foreach ($usersList as $a) {
 ?>
         <main>
             <section class="admin">
-                <h2><?= $a['blog_name'] ?></h2>
-                <div class="flex-container">
-                    <div id="logout"><a href="admin.php?logout">Logga ut</a></div>
-
-
-            <!--Formulär för att skapa inlägg-->
-            <form id="admin-form" method="post" action="create.php">
-                <h3>Skapa inlägg</h3>
-                <div class="centered">
-                    <div><label for="title">Titel:</label><br></div>
-                    <div><input type="text" id="title" name="title" value='' <?= $title; ?>><br><br></div>
-                </div>
-                <label for="content">Innehåll:</label><br>
-                <textarea id="content" name="content" rows="20"><?= $content; ?></textarea><br><br>
-                <script>
-                    CKEDITOR.replace('content');
-                </script>
-                <input type="submit" value="Skapa inlägg">
-            </form>
-            <section class="lagrad">
-                <h3>
-                    Lagrade inlägg
-                </h3>
+                <h2>Skapa inlägg</h2>
                 <?php
-                $post = new Post();
-                $post_list = $post->getPostByUser();
-
-                //Loopar igenom listan med inlägg och skriver ut alla inlägg. 
-                if(empty($post_list)){
-                    echo "<p> Det finns inga lagrade inlägg </p>";
-                }else{
-                foreach ($post_list as $row) {
+                if (isset($message)) {
+                    echo $message;
+                }
                 ?>
-                    <article class="latest">
-                        <h4><?= $row['title'] ?></h4>
-                        <p class="posted">Postat: <?= $row['created'] ?></p>
-                        <p><?= $row['content'] ?>
-                        <div class="flex-a">
-                            <!--Knapp för att ändra inlägg-->
-                            <div><a href="edit.php?id=<?= $row['id']; ?>" class="edit-a">Ändra inlägg</a></div>
-                            <!--Knapp för att ta bort inlägg-->
-                            <div><a href="create.php?deleteid=<?= $row['id']; ?>" class="delete-a">Ta bort</a></div>
-                        </div>
-                    </article>
-        <?php
+
+                <!--Formulär för att skapa inlägg-->
+                <form id="admin-form" method="post" action="create.php">
+                    <div class="centered">
+                        <div><label for="title">Titel:</label><br></div>
+                        <div><input type="text" id="title" name="title" value='' <?= $title; ?>><br><br></div>
+                    </div>
+                    <label for="content">Innehåll:</label><br>
+                    <textarea id="content" name="content" rows="20"><?= $content; ?></textarea><br><br>
+                    <script>
+                        CKEDITOR.replace('content');
+                    </script>
+                    <input type="submit" value="Skapa inlägg">
+                </form>
+                <section class="lagrad">
+                    <h3>
+                        Lagrade inlägg
+                    </h3>
+                    <?php
+                    $post = new Post();
+                    $post_list = $post->getPostByUser();
+
+                    //Loopar igenom listan med inlägg och skriver ut alla inlägg. 
+                    if (empty($post_list)) {
+                        echo "<p> Det finns inga lagrade inlägg </p>";
+                    } else {
+                        foreach ($post_list as $row) {
+                    ?>
+                            <article class="create-article">
+                                <h4><?= $row['title'] ?></h4>
+                                <p class="posted">Postat: <?= $row['created'] ?></p>
+                                  <p class="content-text"> <?= $row['content'] ?> 
+                                <div class="flex-a">
+                                    <!--Knapp för att ta bort inlägg-->
+                                    <div class="delete-a"><a href="create.php?deleteid=<?= $row['id']; ?>">Ta bort <i class="fa-solid fa-trash-can"></i></a></div>
+                                    <!--Knapp för att ändra inlägg-->
+                                    <div class="change-a"><a href="edit.php?id=<?= $row['id']; ?>">Ändra inlägg <i class="fa-solid fa-pen-to-square"></i></a></div>
+                                </div>
+                            </article>
+            <?php
+                        }
+                    }
                 }
             }
-            }
-        }
+            ?>
+                </section>
+                <?php
 
 
-        include('includes/footer.php');
-        ?>
+                include('includes/footer.php');
+                ?>
