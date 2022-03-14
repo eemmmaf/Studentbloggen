@@ -26,11 +26,10 @@ foreach ($usersList as $user) {
 ?>
     <main>
         <section class="admin">
-            <h2><?= $user['blog_name'] ?></h2>
-            <div id="logout"><a href="admin.php?logout">Logga ut</a></div>
-            <h3>Om <?= $user['blog_name'] ?></h3>
+            <h2>Mina sidor</h2>
             <div class="admin-flex">
                 <div id="left">
+                <h3><?= $user['blog_name'] ?>     <i class="fa-solid fa-user"></i></h3>
                     <ul id="admin-ul">
                         <li><strong>Bloggens namn:</strong><br> <?= $user['blog_name'] ?></li>
                         <li><strong>Bloggarens namn:</strong><br> <?= $user['fname'] . " " . $user['ename'] ?>
@@ -55,7 +54,7 @@ foreach ($usersList as $user) {
                             echo " <article class='latest'>
                            <h3>" . $row['title'] . "</h3>
                            <p class='posted'>Postat: " . $row['created'] . " </p>
-                           <p>" . $row['content'] .
+                           <p>" . $row['content'] . "</p>".
                                 "</article>";
                         }
                     } ?>
