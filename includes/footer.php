@@ -4,10 +4,18 @@
         <div class="footer-flex">
             <div><h2>Bloggportalen</h2>
             <ul>
-                <li><a href="index.php">Startsidan</a></li>
-                <li><a href="login.php">Logga in</a></li>
-                <li><a href="register.php">Skapa blogg</a></li>
-                <li><a href="about.php">Om bloggportalen</a></li>
+                <?php
+            if(isset($_SESSION['email'])){
+    echo ' <li><a href="about.php">Om oss </a></li>
+    <li><a href="create.php">Skapa inlägg </a></li>
+    <li><a href="admin.php">Mina sidor</a></li>
+    <li><a href="logout.php">Logga ut</a></li>' ;
+    }else{
+        echo ' <li><a href="index.php">Startsidan</a></li>
+        <li><a href="login.php">Logga in</a></li>
+        <li><a href="register.php">Skapa blogg</a></li>
+        <li><a href="about.php">Om bloggportalen</a></li>' ;
+    }?>
             </ul>
         </div>
             <div>
