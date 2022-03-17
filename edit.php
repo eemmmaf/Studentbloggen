@@ -1,14 +1,17 @@
 <?php
+$page_title = "Redigera inlägg";
 include('includes/config.php');
 //Kontroll för att se om användaren är inloggad. Olika navigeringar visas beroende på om användare är inloggad eller ej
-if(isset($_SESSION['email'])){
+if (isset($_SESSION['email'])) {
     include('includes/header-user.php');
-    }else{
-        include('includes/header-public.php');
-    }
+} else {
+    include('includes/header-public.php');
+}
 ?>
+
 <main>
-    <h2 id="admin-h2">Admin</h2>
+    <!--Länk till föregående sida-->
+    <a href="create.php" id="back">Tillbaka till föregående sida</a>
     <?php
     $post = new Post();
 
@@ -19,7 +22,9 @@ if(isset($_SESSION['email'])){
         //Kontroll för att se om formuläret är skickat
         if (isset($_POST['title'])) {
             $title = $_POST['title'];
+            $title = strip_tags($title);
             $content = $_POST['content'];
+            $content = strip_tags($content);
 
 
             //Felmeddelanden
@@ -29,27 +34,28 @@ if(isset($_SESSION['email'])){
             if (!$post->setTitle($title)) {
                 $success = false;
 
-                $message .= "<p class='error-message'>Titel måste innehålla minst ett tecken</p>";
+                $message .= "<p class='error-create'>Titel måste innehålla minst ett tecken</p>";
             }
             if (!$post->setContent($content)) {
                 $success = false;
 
-                $message .= "<p class='error-message'>Innehållet måste innehålla minst ett tecken</p>";
+                $message .= "<p class='error-create'>Innehållet måste innehålla minst ett tecken</p>";
             }
 
+            //Uppdaterar inlägget om användaren har angett minst 1 tecken för titel och innehåll
             if ($success) {
                 if ($post->updatePost($id, $title, $content)) {
-                    $message .= "<p id='changed'>Ditt inlägg har ändrats</p>";
+                    $message .= "<p class='stored'>Ditt inlägg har ändrats  <i class='fa-solid fa-circle-check'></i></p>";
                 } else {
                     $message .= "<p> Fel vid ändring av inlägg </p>";
                 }
             } else {
-                $message .= "<p class='not-stored'>Blogginlägg ej lagrat. Kontrollera innehållet och försök igen</p>";
+                $message .= "<p class='stored'>Blogginlägg ej lagrat. Kontrollera innehållet och försök igen</p>";
             }
         }
 
 
-        //Läser in innehållet i inlägget
+        //Läser in innehållet i inlägget. Redirectar användaren till admin.php om det misslyckas
         $info = $post->getPostById($id);
     } else {
         header("location: admin.php");
@@ -58,9 +64,10 @@ if(isset($_SESSION['email'])){
     ?>
     <!--Formulär för ändring av inlägg-->
     <form id="admin-form" method="post" action="edit.php?id=<?= $id; ?>">
-        <h3>Ändra inlägget <?= $info['title'] ?></h3>
+        <h2>Ändra inlägget <span id="title-span"><?= $info['title'] ?></span></h2>
         <?php
-        if(isset($message)){
+        //Skriver ut felmeddelanden
+        if (isset($message)) {
             echo $message;
         }
         ?>
@@ -68,17 +75,15 @@ if(isset($_SESSION['email'])){
             <div><label for="title">Titel:</label><br></div>
             <div><input type="text" id="title" name="title" value=<?= $info['title']; ?>><br><br></div>
         </div>
-            <label for="content" id="contennt">Innehåll:</label><br>
-            <textarea id="content" name="content" rows="20"><?= $info['content']; ?></textarea><br><br>
-            <script>
-                        CKEDITOR.replace( 'content' );
-                </script>
+        <label for="content" id="contennt">Innehåll:</label><br>
+        <textarea id="content" name="content" rows="20"><?= $info['content']; ?></textarea><br><br>
+        <!--Använder CKEDITOR-->
+        <script>
+            CKEDITOR.replace('content');
+        </script>
         <input type="submit" value="Spara ändringar">
     </form>
-
-</main>
-
-
-<?php
-include('includes/footer.php')
-?>
+    <!--Slut på formulär-->
+    <?php
+    include('includes/footer.php')
+    ?>
