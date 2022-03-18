@@ -1,4 +1,12 @@
 <?php
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:56:08 
+ * @Last Modified by:   Emma Forslund - emfo2102 
+ * @Last Modified time: 2022-03-17 19:56:08 
+ */
+
+ 
 $page_title = "Om sidan";
 include('includes/config.php');
 //Kontroll för att se om användaren är inloggad. Olika navigeringar visas beroende på om användare är inloggad eller ej
