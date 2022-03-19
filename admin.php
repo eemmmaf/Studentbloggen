@@ -40,6 +40,7 @@ foreach ($usersList as $user) {
                 <div id="left">
                 <h3><?= $user['blog_name'] ?>     <i class="fa-solid fa-user"></i></h3>
                     <ul id="admin-ul">
+                        <!--Utskrift av användarens uppgifter-->
                         <li><strong>Bloggens namn:</strong><br> <?= $user['blog_name'] ?></li>
                         <li><strong>Bloggarens namn:</strong><br> <?= $user['fname'] . " " . $user['ename'] ?>
                         </li>
