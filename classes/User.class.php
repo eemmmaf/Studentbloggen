@@ -1,7 +1,10 @@
 <?php
-/* Skapad av Emma Forslund,
-emfo2102@student.miun.se,
-Klassen för användare*/
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:54:36 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-18 10:38:47
+ */
 
 class User
 {
@@ -47,14 +50,13 @@ class User
         }
     }
 
-    //Metod som kontrollerar att den angivna emailadressen är i korrekt format 
+    //Metod som kontrollerar att den angivna emailadressen är i korrekt format med funktionen filter_var
     public function setEmail(string $email): bool
     {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->email = $email;
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -71,6 +73,7 @@ class User
     }
 
 
+    //Setmetod för att kolla så att inte fältet är tomt
     public function setBlogname(string $blogname): bool
     {
         if (strlen($blogname) >= 5) {
@@ -94,15 +97,22 @@ class User
         if (!$this->setFname($fname)) return false;
 
 
-        //Hasha lösenordet
+        //Hashar lösenordet
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-
+        //Använder real_escape_string för att undvika att skadlig kod hamnar i databasen
         $blogname = $this->db->real_escape_string($blogname);
         $email = $this->db->real_escape_string($email);
         $password = $this->db->real_escape_string($password);
         $fname = $this->db->real_escape_string($fname);
         $ename = $this->db->real_escape_string($ename);
+
+        //Använder strip_tags för att ta bort HTML-taggar
+        $blogname = strip_tags($blogname);
+        $email = strip_tags($email);
+        $password = strip_tags($password);
+        $fname = strip_tags($fname);
+        $ename = strip_tags($ename);
 
 
         $sql = "INSERT INTO users(blog_name, email, password, fname, ename) VALUES('$blogname', '$email', '$hashed_password', '$fname', '$ename')";
@@ -118,6 +128,9 @@ class User
     {
         $email = $this->db->real_escape_string($email);
         $password = $this->db->real_escape_string($password);
+
+        $email = strip_tags($email);
+        $password = strip_tags($password);
 
 
         //SQL-fråga
@@ -145,6 +158,7 @@ class User
     {
         $blogname = $this->db->real_escape_string($blogname);
         $mail = $this->db->real_escape_string($email);
+
         //SQL-fråga
         $sql = "SELECT blog_name, email FROM users WHERE blog_name='$blogname' OR email='$mail'";
         $result = $this->db->query($sql);
@@ -158,9 +172,6 @@ class User
     }
 
 
-
-
-
     //Läs ut användare
     public function getUsers(): array
     {
@@ -168,6 +179,7 @@ class User
         $sql = "SELECT * FROM users ORDER BY created DESC;";
         $result = mysqli_query($this->db, $sql);
 
+        //Returnerar resultatet i en associativ array
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
@@ -182,4 +194,10 @@ class User
 
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+
+     //Destruktor
+     function __destruct()
+     {
+         mysqli_close($this->db);
+     }
 }
