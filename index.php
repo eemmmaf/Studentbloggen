@@ -1,4 +1,12 @@
     <?php
+    /*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:56:39 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-18 21:15:44
+ */
+
+
     $page_title = "Startsida";
     include('includes/config.php');
     //Kontroll för att se om användaren är inloggad. Olika navigeringar visas beroende på om användare är inloggad eller ej
@@ -12,14 +20,14 @@
     <!--Den stora bilden som visas på startsidan-->
     <div class="hero-image">
         <picture>
-            <source media="(max-width:500px)" srcset="images/img1-small.jpg">
-            <img src="images/img1.jpg" alt="En laptop">
+            <source srcset="images/img1.jpg" media="(min-width:650px)">
+            <img src="images/img1-small.jpg" alt="En laptop och kaffekopp">
         </picture>
         <!--Textruta placeras på bilden-->
         <div class="hero-text">
             <h2>Bloggportalen för studenter</h2>
             <!--Länk till register.php-->
-            <a href="register.php" id="register-a">Skapa blogg direkt</a>
+            <a href="register.php" id="register-a">Skapa blogg</a>
         </div>
     </div>
     <main>
@@ -44,8 +52,9 @@
                                 <h3><?= $a['title'] ?></h3>
                                 <p class="posted">Postat: <?= $a['created'] ?>
                                     | Bloggare: <?= $a['blog_name'] ?></p>
-                                <p><?= $a['content'] ?></p>
-                                <a class="details" href="comments.php?id=<?= $a['id'] ?>">Gå till inlägget</a>
+                                <?= substr($a['content'], 0, 500) ?>
+                                <br><br>
+                                <a class="details" href="details.php?id=<?= $a['id'] ?>">Läs hela inlägget</a>
 
                             </article>
                     <?php
@@ -57,9 +66,8 @@
                     }
                     ?>
                 </div>
-                <div class="flex-container-index">
                     <div class="index-users">
-                        <h2>Registrerade användare</h2>
+                        <h2>Registrerade bloggar</h2>
                         <ul id="users">
                             <?php
                             $userposts = new Post();
@@ -68,14 +76,14 @@
 
                             //Kontroll för att se om arrayen är tom
                             if ($users == []) {
-                                echo "<p> Det finns inga registrerade användare ännu </p>";
+                                echo "<li>Det finns inga registrerade användare ännu </li>";
                             } else {
-                                //Skriver ut en länk till enskilda användares inlägg
+                                //Skriver ut en länk till enskilda användares inlägg. Använder urlencode för att inte få mellanslag i bloggnamnet
                                 foreach ($users as $row) {
                             ?>
 
                                     <li>
-                                        <a href="postbyuser.php?user=<?= $row['email']; ?>"><?= $row['email']; ?> <span class='arrow-i'><i class="fa-solid fa-arrow-right"></i></span></a>
+                                        <a href="postbyuser.php?user=<?=urlencode($row['blog_name']); ?>"><?= $row['blog_name']; ?> <span class='arrow-i'><i class="fa-solid fa-arrow-right"></i></span></a>
                                     </li>
                             <?php
                                 }
@@ -83,26 +91,25 @@
                             ?>
                         </ul>
                     </div>
-                    </div>
 
-                </div>
+            </div>
         </section>
 
         <!--Sektion där bild och text skrivs ut med FETCH-->
         <section id="space">
-            <h2>Veckans tips - planeter</h2>
+            <h2>Veckans lektion - Galaxer</h2>
             <article id="output-article">
                 <div class="flex-nasa">
                     <div id="output-div">
-                    <h3 id="output-h3">Planeten </h3>
-                    <p id="output-content"></p>
-                    <button type="button" id="hide-swedish" onclick="showSwedish()">Visa texten på svenska</button>
-                    <p id="swedish">
-                        Bara 11 miljoner ljusår bort är Centaurus A den aktiva galaxen som ligger närmast planeten jorden. Den märkliga elliptiska galaxen, även känd som NGC 5128, som sträcker sig över 60 000 ljusår, visas i denna skarpa teleskopvy.<br><br> Centaurus A är tydligen resultatet av en kollision mellan två annars normala galaxer som resulterar i ett fantastiskt virrvarr av stjärnhopar och imponerande mörka dammbanor. Nära galaxens centrum konsumeras överblivna kosmiska skräp ständigt av ett centralt svart hål med en miljard gånger solens massa. Precis som i andra aktiva galaxer genererar den processen sannolikt den enorma radio-, röntgen- och gammastrålningsenergi som utstrålas av Centaurus A.
-                    </p>
+                        <h3 id="output-h3">Galaxen </h3>
+                        <p id="output-content"></p>
+                        <button type="button" id="hide-swedish" onclick="showSwedish()">Visa texten på svenska</button>
+                        <p id="swedish">
+                            Blåaktiga reflektionsnebulosor verkar fylla denna dammiga vidd. Den vassa teleskopramen sträcker sig över 1 grad på himlen mot den svaga men fantasifulla konstellationen Monoceros, Enhörningen. Sedd inom Monoceros R1 molnkomplex cirka 2 500 ljusår bort, är blåaktig IC 447 till vänster, förenad av en lång mörk glödtråd av damm till IC 446 längst ner till höger. <br><br>Inbäddade i IC 447 finns unga, massiva blå stjärnor som är mycket hetare än solen, vars ljus reflekteras av det kosmiska molnet av stjärnmaterial. Observationer avslöjar att IC 446 också innehåller ett ungt stjärnobjekt, en massiv stjärna som fortfarande befinner sig i ett tidigt skede av evolutionen. Det mörka glödtråden av damm och molekylär gas som förenar de två stjärnbildande regionerna är över 15 ljusår långa.
+                        </p>
                     </div>
                     <div id="img-nasa">
-                        
+
                     </div>
                 </div>
             </article>
