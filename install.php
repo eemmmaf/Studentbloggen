@@ -1,5 +1,13 @@
 <?php
-include('Includes/config.php');
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:56:39 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-18 16:02:46
+ */
+
+
+include('includes/config.php');
 
 //Anslut
 $db = new mysqli(DBHOST, DBUSER, DBPASS, DBDATABASE);
@@ -26,9 +34,12 @@ CREATE TABLE posts(
     created timestamp NOT NULL DEFAULT current_timestamp(),
     fname VARCHAR(50),
     ename VARCHAR(50));
+
     
 ALTER TABLE posts
-ADD FOREIGN KEY (email) REFERENCES users(email);";
+ADD FOREIGN KEY (email) REFERENCES users(email);
+
+";
     
 
 echo "<pre> $sql </pre>";
