@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-17 19:55:21
+ * @Last Modified time: 2022-03-18 21:13:29
  */
 
 
@@ -27,12 +27,18 @@ define("DBHOST", "localhost");
 define("DBUSER", "Bloggportalen");
 define("DBPASS", "Password");
 define("DBDATABASE", "bloggportalen");
-
-
-//Felmeddelanden 
+// Aktiverar Felmeddelanden 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+}else{
+//Databasanslutning för publicerad webbplats
+define("DBHOST", 'studentmysql.miun.se');
+define("DBUSER", 'emfo2102');
+define("DBPASS", 'X8jyGSt@dW');
+define("DBDATABASE", 'emfo2102');
 }
+
 
 ?>
