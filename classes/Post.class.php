@@ -1,5 +1,12 @@
-
    <?php
+    /*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:54:36 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-18 20:48:57
+ */
+
+
     class Post
     {
         //Properties
@@ -7,6 +14,7 @@
         private $title; //Inläggets titel
         private $content; //Inläggets innehåll
         private $email;
+
 
 
         //Konstruktor med databasanslutning
@@ -27,6 +35,16 @@
             if (!$this->setTitle($title)) return false;
             if (!$this->setContent($content)) return false;
 
+
+            //Använder real_escape_string för att undvika att skadlig kod hamnar i databasen
+            $this->db->real_escape_string($title);
+            $this->db->real_escape_string($content);
+
+            //Använder strip_tags för att ta bort HTML-taggar. Tillåter vissa taggar för utskriftens skull
+            $content = strip_tags($content, '<p><strong><em><a><ul><ol><li>');
+            $title = strip_tags($title);
+
+
             //SQL fråga
             $sql = "INSERT INTO posts(email,title, content)VALUES('" . $_SESSION['email'] . "', '" . $this->title . "', '" . $this->content . "');";
 
@@ -41,6 +59,16 @@
             //Kontrollerar om set-metoder är uppfyllda
             if (!$this->setTitle($title)) return false;
             if (!$this->setContent($content)) return false;
+
+            //Använder real_escape_string för att undvika att skadlig kod hamnar i databasen
+            $this->db->real_escape_string($title);
+            $this->db->real_escape_string($content);
+
+            //Använder strip_tags för att ta bort HTML-taggar. Tillåter vissa taggar för utskriftens skull
+            $content = strip_tags($content, '<p><strong><em><a><ul><ol><li>');
+            $title = strip_tags($title);
+
+
             //SQL Fråga
             $sql = "UPDATE posts SET title='" . $this->title . "',content= '" . $this->content . "' WHERE id=$id;";
             //Skicka fråga
@@ -50,7 +78,11 @@
         //Metod för att hämta ett specifikt inlägg med ID
         public function getPostById(int $id): array
         {
-            $sql = "SELECT * FROM posts where id=$id;";
+            //Gör en LEFT JOIN för att kunna hämta användarens bloggnamn
+            $sql = "SELECT posts.*, users.blog_name
+            FROM posts
+            LEFT JOIN users ON posts.email = users.email
+            where id=$id;";
             $result = mysqli_query($this->db, $sql);
 
             return $result->fetch_assoc();
@@ -72,11 +104,21 @@
 
 
         //Metod för att läsa ut en viss användares inlägg
-        function getPostsFromUser()
+        function getPostsFromUser(): array
         {
-            $escaped_get = $this->db->real_escape_string($_GET['email']);
+            $escaped_get = $this->db->real_escape_string($_GET['user']);
 
-            $sql = "SELECT * FROM posts WHERE email='" . $escaped_get . "'";
+            //Använder strip_tags för att ta bort HTML-taggar.
+            $escaped_get = strip_tags($escaped_get);
+
+
+            //SQL-query med LEFT JOIN för att få användarens bloggnamn
+            $sql = "SELECT posts.*, users.blog_name
+            FROM posts 
+                LEFT JOIN users ON posts.email = users.email
+                WHERE blog_name='" . $escaped_get . "'
+            ORDER BY created DESC;";
+
             $result = $this->db->query($sql);
 
             return mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -97,7 +139,9 @@
         }
 
 
-        //Set-metoder
+        /*Set-metoder
+        */
+
         //Metod som kontrollerar att textfält inte är tomt
         public function setTitle(string $title): bool
         {
@@ -135,6 +179,9 @@
 
             return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
+
+
+
 
         //Destruktor
         function __destruct()
