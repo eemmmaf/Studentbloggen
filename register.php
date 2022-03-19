@@ -1,11 +1,21 @@
 <?php
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:56:39 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-18 14:52:39
+ */
+
+
+
+$page_title = "Skapa blogg";
 include('includes/config.php');
 //Kontroll för att se om användaren är inloggad. Olika navigeringar visas beroende på om användare är inloggad eller ej
-if(isset($_SESSION['email'])){
+if (isset($_SESSION['email'])) {
     include('includes/header-user.php');
-    }else{
-        include('includes/header-public.php');
-    }
+} else {
+    include('includes/header-public.php');
+}
 
 if (isset($_POST['blogname'])) {
     $email = $_POST['email'];
@@ -59,18 +69,6 @@ if (isset($_POST['blogname'])) {
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="sv">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Bloggportalen</title>
-</head>
-<a href="index.php">Tillbaka till startsidan</a>
 <form action="register.php" method="POST" id="register">
     <h2>Skapa en blogg</h2>
     <p>Här kan du skapa en blogg helt gratis</p>
@@ -86,15 +84,20 @@ if (isset($_POST['blogname'])) {
     <!--Bloggens namn-->
     <label for="blogname">Bloggens namn:</label><br>
     <input type="text" name="blogname" id="blogname"><br><br>
+    <div class="error-js"></div>
     <?php
+    //Skriver ut felmeddelande
     if (isset($errorblogname)) {
         echo $errorblogname;
     } ?>
+    
 
     <!--Epost-->
     <label for="email">Epost:</label><br>
     <input type="email" name="email" id="email"><br><br>
+    <div class="error-js"></div>
     <?php
+    //Skriver ut felmeddelande
     if (isset($errormail)) {
         echo $errormail;
     }
@@ -104,7 +107,9 @@ if (isset($_POST['blogname'])) {
     <!--Förnamn-->
     <label for="fname">Förnamn:</label><br>
     <input type="text" name="fname" id="fname"><br><br>
+    <div class="error-js"></div>
     <?php
+    //Skriver ut felmeddelande
     if (isset($errorename)) {
         echo $errorename;
     }
@@ -114,7 +119,9 @@ if (isset($_POST['blogname'])) {
     <!--Efternamn-->
     <label for="ename">Efternamn:</label><br>
     <input type="text" name="ename" id="ename"><br><br>
+    <div class="error-js"></div>
     <?php
+    //Skriver ut felmeddelande
     if (isset($errorfname)) {
         echo $errorfname;
     }
@@ -122,8 +129,10 @@ if (isset($_POST['blogname'])) {
 
     <!--Lösenord-->
     <label for="password">Lösenord:</label><br>
-    <input type="password" name="password" id="password" placeholder="Lösenordet måste innehålla minst 8 tecken"><br><br>
+    <input type="password" name="password" id="password" placeholder="Lösenordet måste innehålla minst 8 tecken" onchange="passwordValidation()"><br><br>
+    <p id="ok"></p>
     <?php
+    //Skriver ut felmeddelande
     if (isset($errorpassword)) {
         echo $errorpassword;
     }
@@ -133,6 +142,7 @@ if (isset($_POST['blogname'])) {
     <!--Godkänn lagring-->
     <input type="checkbox" id="approve" name="approve" value="Jag godkänner" onclick="disableSubmit(this)">
     <label for="approve">Jag godkänner lagring av mina uppgifter</label><br><br>
+    <p id="approve-p"></p>
 
     <!--Logga in-->
     <input type="submit" value="Skapa blogg" id="submitEl" disabled>
