@@ -2,7 +2,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-18 00:23:49
+ * @Last Modified time: 2022-03-18 15:02:27
  */
 
 "use strict";
@@ -86,7 +86,7 @@ function passwordValidation() {
   if (passwordInput.length >= 8) {
     text = 'Lösenordet är tillräckligt långt <i class="fa-solid fa-circle-check"></i>';
   } else {
-    text = "Lösenordet är för kort";
+    text = "Lösenordet måste vara minst 8 tecken långt";
   }
   document.getElementById("ok").innerHTML = text;
 }
