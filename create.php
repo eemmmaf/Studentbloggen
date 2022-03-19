@@ -1,4 +1,13 @@
 <?php
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:56:08 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-17 19:56:32
+ */
+
+
+
 $page_title = "Hantera inlägg";
 include('includes/config.php');
 //Kontroll för att se om användaren är inloggad. Olika navigeringar visas beroende på om användare är inloggad eller ej
@@ -37,9 +46,7 @@ $content = "";
 //Kontroll för att se om formuläret är skickat
 if (isset($_POST['title'])) {
     $title = $_POST['title'];
-    $title = strip_tags($title);
     $content = $_POST['content'];
-    $content = strip_tags($content);
 
     
     //Felmeddelanden
@@ -118,7 +125,7 @@ foreach ($usersList as $a) {
 
                     //Loopar igenom listan med inlägg och skriver ut alla inlägg om det finns några. Om det är tomt skrivs meddelande ut
                     if (empty($post_list)) {
-                        echo "<p> Det finns inga lagrade inlägg </p>";
+                        echo "<p class='stored'> Det finns inga lagrade inlägg </p>";
                     } else {
                         foreach ($post_list as $row) {
                     ?>
@@ -126,7 +133,7 @@ foreach ($usersList as $a) {
                             <article class="create-article">
                                 <h4><?= $row['title'] ?></h4>
                                 <p class="posted">Postat: <?= $row['created'] ?></p>
-                                  <p class="content-text"> <?= $row['content'] ?> 
+                                 <?= $row['content'] ?> 
                                 <div class="flex-a">
                                     <!--Knapp för att ta bort inlägg-->
                                     <div class="delete-a"><a href="create.php?deleteid=<?= $row['id']; ?>">Ta bort <i class="fa-solid fa-trash-can"></i></a></div>
