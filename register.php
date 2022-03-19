@@ -26,6 +26,8 @@ if (isset($_POST['blogname'])) {
 
     $register = new User();
     $success = true; //Variabel för när det postade är OK
+
+    //Anropar setmetoder. Registrerar inte användaren om setMetoderna inte uppfylls
     if (!$register->setPassword($password)) {
         $success = false;
         $errorpassword = "<span class='error-form'>Lösenordet måste innehålla minst 8 tecken</span>";
@@ -55,7 +57,7 @@ if (isset($_POST['blogname'])) {
         $errorename = "<span class='error-form'>Efternamn måste innehålla minst 1 tecken</span>";
     }
 
-
+//Kontrollerar om bloggnamnet och mailadressen är unika
     if ($register->uniqueNames($blogname, $email)) {
         $message = "<p class='error-message'> Användare finns redan </p>";
     } else {
