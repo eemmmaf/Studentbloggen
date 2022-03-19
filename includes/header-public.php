@@ -1,3 +1,12 @@
+<?php
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2022-03-17 19:54:36 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-17 19:55:43
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -7,12 +16,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/2090b52781.js" crossorigin="anonymous"></script>
-    <title>Bloggportalen</title>
+    <title><?= $site_title . $divider . $page_title; ?></title>
 </head>
 
 <body>
     <header>
-        <h1><a href="index.php">Bloggportalen</a></h1>
+        <h1><a href="index.php">Studentblogg<i class="fa-solid fa-book"></i></a></h1>
         <nav class="desktop-nav">
             <ul>
                 <li><a href="about.php">Om sidan   <i class="fa-solid fa-circle-info fa-2xs"></i></a></li>
