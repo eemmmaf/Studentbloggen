@@ -58,6 +58,7 @@ if (isset($_POST['email'])) {
 <!--Slut på formulär-->
 
 <!--Inkluderar ej footern i denna fil-->
+<script src="js/main.js"></script>
 </body>
 
 </html>
