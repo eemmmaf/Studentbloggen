@@ -63,8 +63,8 @@ foreach ($usersList as $user) {
                         foreach ($post_list as $row) {
                             echo " <article class='latest'>
                            <h4>" . $row['title'] . "</h4>
-                           <p class='posted'>Postat: " . $row['created'] . " </p>
-                           <p>" . $row['content'] . "</p>".
+                           <p class='posted'>Postat: " . $row['created'] . " </p> " .
+                           $row['content'] . 
                                 "</article>";
                         }
                     } ?>
