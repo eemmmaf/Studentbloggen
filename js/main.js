@@ -2,7 +2,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-18 15:02:27
+ * @Last Modified time: 2022-03-20 18:09:39
  */
 
 "use strict";
@@ -40,29 +40,21 @@ function loadData() {
     );
 }
 
+
 //Funktion som skriver ut det som är hämtat från funktionen loadData
 function showData(info) {
   let heading = document.getElementById("output-h3");
   let outputContent = document.getElementById("output-content");
   let outputImg = document.getElementById("img-nasa");
   heading.innerHTML += info.title;
-  outputContent.innerHTML += info.explanation + "<br> <br> Copyright:" + info.copyright;
+  //If-sats för att kontrollera ifall det står undefined 
+  if(info.copyright == undefined){
+    outputContent.innerHTML += info.explanation + "<br> <br> Copyright: okänt";
+  }else{
+  outputContent.innerHTML += info.explanation + "<br> <br> Copyright:" + info.copyright;}
   outputImg.innerHTML += `<img src="${info.url}">`;
 }
 
-
-//Funktion för att visa texten på svenska
-function showSwedish() {
-  let content = document.getElementById("swedish");
-  if (!content.style.display || content.style.display === "none") {
-    content.style.display = "block";
-
-  } else {
-    content.style.display = "none";
-
-  }
-
-}
 
 /*Validering av formulär
 2 funktioner*/
