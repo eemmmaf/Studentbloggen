@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-20 17:50:36
+ * @Last Modified time: 2022-03-20 19:31:19
  */
 
 class User
@@ -53,7 +53,7 @@ class User
     //Metod som kontrollerar att den angivna emailadressen är i korrekt format med funktionen filter_var
     public function setEmail(string $email): bool
     {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL && $email != "")) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->email = $email;
             return true;
         } else {
