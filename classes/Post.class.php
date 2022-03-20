@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-18 20:48:57
+ * @Last Modified time: 2022-03-20 20:38:22
  */
 
 
@@ -41,7 +41,7 @@
             $this->db->real_escape_string($content);
 
             //Använder strip_tags för att ta bort HTML-taggar. Tillåter vissa taggar för utskriftens skull
-            $content = strip_tags($content, '<p><strong><em><a><ul><ol><li>');
+            $content = strip_tags($content, '<p><strong><em><a><ul><ol><li><br>');
             $title = strip_tags($title);
 
 
@@ -65,8 +65,9 @@
             $this->db->real_escape_string($content);
 
             //Använder strip_tags för att ta bort HTML-taggar. Tillåter vissa taggar för utskriftens skull
-            $content = strip_tags($content, '<p><strong><em><a><ul><ol><li>');
+            $content = strip_tags($content, '<p><strong><em><a><ul><ol><li><br>');
             $title = strip_tags($title);
+
 
 
             //SQL Fråga
