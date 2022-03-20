@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-17 19:55:31
+ * @Last Modified time: 2022-03-20 20:14:07
  */
 ?>
 </main>
@@ -15,7 +15,7 @@
                 <?php
                 if (isset($_SESSION['email'])) {
                     echo ' <li><a href="about.php">Om oss </a></li>
-    <li><a href="create.php">Skapa inlägg </a></li>
+    <li><a href="create.php">Hantera inlägg </a></li>
     <li><a href="admin.php">Mina sidor</a></li>
     <li><a href="logout.php">Logga ut</a></li>';
                 } else {
