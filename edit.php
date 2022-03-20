@@ -2,8 +2,8 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:56:39 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2022-03-17 19:56:39 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2022-03-20 20:36:31
  */
 
 
@@ -31,9 +31,7 @@ if (isset($_SESSION['email'])) {
         //Kontroll för att se om formuläret är skickat
         if (isset($_POST['title'])) {
             $title = $_POST['title'];
-            $title = strip_tags($title);
             $content = $_POST['content'];
-            $content = strip_tags($content);
 
 
             //Felmeddelanden
