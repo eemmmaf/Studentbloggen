@@ -35,7 +35,7 @@ if (isset($_GET['logout'])) {
         <nav class="desktop-nav">
             <ul>
                 <li><a href="about.php">Om sidan <i class="fa-solid fa-circle-info fa-2xs"></i></a></li>
-                <li><a href="create.php">Hantera inlägg <i class="fa-solid fa-pen fa-2xs"></i></a></li>
+                <li><a href="create.php">Skapa inlägg <i class="fa-solid fa-pen fa-2xs"></i></a></li>
                 <li><a href="admin.php">Mina sidor <i class="fa-solid fa-user fa-2xs"></i></a></li>
                 <li><a href="logout.php">Logga ut <i class="fa-solid fa-arrow-right-from-bracket fa-2xs"></i></a></li>
             </ul>
@@ -45,7 +45,7 @@ if (isset($_GET['logout'])) {
             <button class="hamburger-icon" id="hamburger-icon"><i class="fas fa-bars"></i></button>
             <ul class="nav-ul" id="nav-ul">
                 <li><a href="about.php">Om sidan <i class="fa-solid fa-circle-info fa-2xs"></i></a></li>
-                <li><a href="create.php">Hantera inlägg <i class="fa-solid fa-pen fa-2xs"></i></a></li>
+                <li><a href="create.php">Skapa inlägg <i class="fa-solid fa-pen fa-2xs"></i></a></li>
                 <li><a href="admin.php">Mina sidor <i class="fa-solid fa-user fa-2xs"></i></a></li>
                 <li><a href="logout.php">Logga ut <i class="fa-solid fa-arrow-right-from-bracket fa-2xs"></i></a></li>
             </ul>

@@ -15,7 +15,7 @@
                 <?php
                 if (isset($_SESSION['email'])) {
                     echo ' <li><a href="about.php">Om oss </a></li>
-    <li><a href="create.php">Hantera inlägg </a></li>
+    <li><a href="create.php">Skapa inlägg </a></li>
     <li><a href="admin.php">Mina sidor</a></li>
     <li><a href="logout.php">Logga ut</a></li>';
                 } else {
