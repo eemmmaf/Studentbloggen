@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-18 21:13:29
+ * @Last Modified time: 2022-03-20 20:14:14
  */
 
 
@@ -20,7 +20,7 @@ $site_title = "Studentblogg";
 $divider = " - ";
 
 //Variabel för inställning av databasanslutnings-uppgifter
-$developer = true;
+$developer = false;
 if($developer){
 //Databasanslutning lokal server
 define("DBHOST", "localhost");
