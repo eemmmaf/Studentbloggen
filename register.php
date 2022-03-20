@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:56:39 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-20 17:53:49
+ * @Last Modified time: 2022-03-20 20:02:27
  */
 
 
@@ -36,7 +36,7 @@ if (isset($_POST['blogname'])) {
     if (!$register->setEmail($email)) {
         $success = false;
 
-        $errormail = "<span class='error-form'>Epost måste innehålla minst 1 tecken och vara i rätt format</span>";
+        $errormail = "<span class='error-form'>Epost måste vara i rätt format</span>";
     }
 
     if (!$register->setBlogname($blogname)) {
