@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:56:39 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-18 21:16:54
+ * @Last Modified time: 2022-03-20 20:10:06
  */
 
 
@@ -47,7 +47,7 @@ if ((isset($_GET['user']))) {
                             <article class="latest">
                                 <h3><?= $posts['title'] ?></h3>
                                 <p class="posted">Postat: <?= $posts['created'] ?></p>
-                                <p class='content'><?= $posts['content'] ?></p>
+                                <?= $posts['content'] ?>
                             </article>
                     <?php
                         }
