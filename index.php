@@ -3,7 +3,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:56:39 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-18 21:15:44
+ * @Last Modified time: 2022-03-20 18:09:26
  */
 
 
@@ -66,35 +66,34 @@
                     }
                     ?>
                 </div>
-                    <div class="index-users">
-                        <h2>Registrerade bloggar</h2>
-                        <ul id="users">
-                            <?php
-                            $userposts = new Post();
-                            $users = new User();
-                            $users = $users->getUsers();
+                <div class="index-users">
+                    <h2>Registrerade bloggar</h2>
+                    <ul id="users">
+                        <?php
+                        $userposts = new Post();
+                        $users = new User();
+                        $users = $users->getUsers();
 
-                            //Kontroll för att se om arrayen är tom
-                            if ($users == []) {
-                                echo "<li>Det finns inga registrerade användare ännu </li>";
-                            } else {
-                                //Skriver ut en länk till enskilda användares inlägg. Använder urlencode för att inte få mellanslag i bloggnamnet
-                                foreach ($users as $row) {
-                            ?>
+                        //Kontroll för att se om arrayen är tom
+                        if ($users == []) {
+                            echo "<li>Det finns inga registrerade användare ännu </li>";
+                        } else {
+                            //Skriver ut en länk till enskilda användares inlägg. Använder urlencode för att inte få mellanslag i bloggnamnet
+                            foreach ($users as $row) {
+                        ?>
 
-                                    <li>
-                                        <a href="postbyuser.php?user=<?=urlencode($row['blog_name']); ?>"><?= $row['blog_name']; ?> <span class='arrow-i'><i class="fa-solid fa-arrow-right"></i></span></a>
-                                    </li>
-                            <?php
-                                }
+                                <li>
+                                    <a href="postbyuser.php?user=<?= urlencode($row['blog_name']); ?>"><?= $row['blog_name']; ?> <span class='arrow-i'><i class="fa-solid fa-arrow-right"></i></span></a>
+                                </li>
+                        <?php
                             }
-                            ?>
-                        </ul>
-                    </div>
+                        }
+                        ?>
+                    </ul>
+                </div>
 
             </div>
         </section>
-
         <!--Sektion där bild och text skrivs ut med FETCH-->
         <section id="space">
             <h2>Veckans lektion - Galaxer</h2>
@@ -103,10 +102,6 @@
                     <div id="output-div">
                         <h3 id="output-h3">Galaxen </h3>
                         <p id="output-content"></p>
-                        <button type="button" id="hide-swedish" onclick="showSwedish()">Visa texten på svenska</button>
-                        <p id="swedish">
-                            Blåaktiga reflektionsnebulosor verkar fylla denna dammiga vidd. Den vassa teleskopramen sträcker sig över 1 grad på himlen mot den svaga men fantasifulla konstellationen Monoceros, Enhörningen. Sedd inom Monoceros R1 molnkomplex cirka 2 500 ljusår bort, är blåaktig IC 447 till vänster, förenad av en lång mörk glödtråd av damm till IC 446 längst ner till höger. <br><br>Inbäddade i IC 447 finns unga, massiva blå stjärnor som är mycket hetare än solen, vars ljus reflekteras av det kosmiska molnet av stjärnmaterial. Observationer avslöjar att IC 446 också innehåller ett ungt stjärnobjekt, en massiv stjärna som fortfarande befinner sig i ett tidigt skede av evolutionen. Det mörka glödtråden av damm och molekylär gas som förenar de två stjärnbildande regionerna är över 15 ljusår långa.
-                        </p>
                     </div>
                     <div id="img-nasa">
 
