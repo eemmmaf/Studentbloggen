@@ -2,7 +2,7 @@
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2022-03-17 19:54:36 
  * @Last Modified by: Emma Forslund - emfo2102
- * @Last Modified time: 2022-03-18 21:20:29
+ * @Last Modified time: 2022-03-20 20:02:16
  */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato&family=Questrial&display=swap');
@@ -168,6 +168,8 @@ header{
 
 .flex-article{
     flex-shrink: 5;
+    max-width:800px;
+    width:100%;
 }
 
 #swedish{
@@ -281,7 +283,7 @@ max-width:500px;
     border:1px solid rgb(231, 229, 229);
 margin:2rem auto;
     padding-top:0;
-    padding-bottom:4%;
+    padding-bottom:7%;
     padding-left:2%;
     padding-right:2%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
